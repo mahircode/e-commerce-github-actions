@@ -1,0 +1,509 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FORMA | Everyday, Elevated</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #f7f5f0;
+  --dark: #293329;
+  --text: #20231f;
+  --muted: #777b72;
+  --line: #e8e5dc;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+}
+a { text-decoration: none; color: inherit; }
+button { cursor: pointer; font-family: inherit; }
+
+.announcement {
+  background: var(--dark);
+  color: white;
+  text-align: center;
+  padding: 10px;
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(247,245,240,.96);
+  border-bottom: 1px solid var(--line);
+}
+nav {
+  max-width: 1200px;
+  margin: auto;
+  padding: 22px 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo {
+  font-size: 25px;
+  font-weight: 700;
+  letter-spacing: 5px;
+}
+.nav-links {
+  display: flex;
+  gap: 30px;
+  font-size: 13px;
+}
+.nav-links a:hover { color: #929c7e; }
+.cart {
+  border: 0;
+  background: none;
+  font-size: 20px;
+}
+
+.hero {
+  max-width: 1200px;
+  margin: 25px auto;
+  padding: 0 20px;
+}
+.hero-inner {
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  background: #e7e5da;
+  position: relative;
+  overflow: hidden;
+}
+.hero-content {
+  width: 52%;
+  padding: 65px;
+  position: relative;
+  z-index: 2;
+}
+.eyebrow {
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  color: #737b65;
+  text-transform: uppercase;
+}
+h1 {
+  font: 500 clamp(42px, 5vw, 68px)/1.1 'Playfair Display', serif;
+  margin: 20px 0;
+}
+.hero-content p {
+  color: #666b61;
+  line-height: 1.8;
+  font-size: 14px;
+  max-width: 380px;
+}
+.hero-image {
+  position: absolute;
+  inset: 0 0 0 48%;
+}
+.hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.btn {
+  display: inline-block;
+  padding: 15px 24px;
+  margin-top: 18px;
+  background: var(--dark);
+  color: white;
+  border: 1px solid var(--dark);
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.btn:hover {
+  background: transparent;
+  color: var(--dark);
+}
+
+section.content {
+  max-width: 1200px;
+  margin: 90px auto;
+  padding: 0 20px;
+}
+.section-title {
+  font: 500 40px 'Playfair Display', serif;
+  margin: 10px 0 30px;
+}
+.categories {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 18px;
+}
+.category {
+  height: 320px;
+  position: relative;
+  overflow: hidden;
+}
+.category img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: .4s;
+}
+.category:hover img { transform: scale(1.05); }
+.category span {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  padding: 12px 18px;
+  background: white;
+  font: 21px 'Playfair Display', serif;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 20px;
+}
+.product-image {
+  position: relative;
+  aspect-ratio: 4/5;
+  overflow: hidden;
+  background: #eae8e0;
+}
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: .4s;
+}
+.product-card:hover img { transform: scale(1.04); }
+.add-btn {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  right: 12px;
+  padding: 13px;
+  border: 0;
+  background: white;
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+.product-info { padding-top: 12px; }
+.product-info h3 {
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+.product-info p {
+  color: var(--muted);
+  font-size: 12px;
+}
+.price { font-weight: bold; font-size: 14px; }
+
+.story {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: #e9e8df;
+}
+.story img {
+  width: 100%;
+  height: 440px;
+  object-fit: cover;
+}
+.story-content {
+  padding: 55px;
+  align-self: center;
+}
+.story-content h2 {
+  font: 42px 'Playfair Display', serif;
+}
+.story-content p {
+  font-size: 13px;
+  line-height: 1.9;
+  color: var(--muted);
+}
+
+.newsletter {
+  background: #dfe2d6;
+  text-align: center;
+  padding: 70px 20px;
+}
+.newsletter h2 {
+  font: 38px 'Playfair Display', serif;
+}
+.newsletter input {
+  padding: 14px;
+  width: min(300px, 65%);
+  border: none;
+  background: transparent;
+  border-bottom: 1px solid #777;
+  outline: none;
+}
+.newsletter button {
+  padding: 14px;
+  border: 0;
+  background: var(--dark);
+  color: white;
+}
+
+footer {
+  background: var(--dark);
+  color: white;
+  padding: 50px 25px;
+  text-align: center;
+}
+footer p {
+  color: #c2c8ba;
+  font-size: 12px;
+}
+.toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: var(--dark);
+  color: white;
+  padding: 15px 20px;
+  display: none;
+  z-index: 20;
+}
+
+@media(max-width: 760px) {
+  .nav-links { display: none; }
+  .hero-inner { min-height: 570px; align-items: end; }
+  .hero-image { inset: 0 0 35% 0; }
+  .hero-content {
+    width: 100%;
+    padding: 230px 25px 35px;
+    background: linear-gradient(0deg,#e7e5da 75%,transparent);
+  }
+  .categories { grid-template-columns: 1fr; }
+  .category { height: 260px; }
+  .products { grid-template-columns: repeat(2,1fr); gap: 22px 12px; }
+  .story { grid-template-columns: 1fr; }
+  .story img { height: 300px; }
+  .story-content { padding: 30px; }
+  .section-title { font-size: 32px; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="announcement">
+  COMPLIMENTARY SHIPPING ON ORDERS OVER ₹2,500
+</div>
+
+<header>
+<nav>
+  <a class="logo" href="#">FORMA</a>
+  <div class="nav-links">
+    <a href="#new">New Arrivals</a>
+    <a href="#collections">Collections</a>
+    <a href="#story">Our Story</a>
+  </div>
+  <button class="cart" onclick="showCart()">
+    ♧ Bag (<span id="cartCount">0</span>)
+  </button>
+</nav>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="eyebrow">Considered essentials · New season</div>
+      <h1>Everyday, a little more extraordinary.</h1>
+      <p>
+        Thoughtful pieces for living well. Discover timeless
+        design, natural textures and beautiful details.
+      </p>
+      <a href="#new" class="btn">Shop Collection ↗</a>
+    </div>
+
+    <div class="hero-image">
+      <img
+        src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1400&q=85"
+        onerror="this.onerror=null;this.src='https://picsum.photos/1400/1000?random=1'"
+        alt="Fashion collection">
+    </div>
+  </div>
+</section>
+
+<section class="content" id="collections">
+  <div class="eyebrow">Find your feel</div>
+  <h2 class="section-title">Explore the collections</h2>
+
+  <div class="categories">
+    <a href="#new" class="category">
+      <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=900&q=80"
+        onerror="this.onerror=null;this.src='https://picsum.photos/900/700?random=2'"
+        alt="Fashion">
+      <span>The Wardrobe</span>
+    </a>
+
+    <a href="#new" class="category">
+      <img src="https://images.unsplash.com/photo-1490312278390-ab64016e0aa9?auto=format&fit=crop&w=900&q=80"
+        onerror="this.onerror=null;this.src='https://picsum.photos/900/700?random=3'"
+        alt="Home decor">
+      <span>Living Spaces</span>
+    </a>
+
+    <a href="#new" class="category">
+      <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=80"
+        onerror="this.onerror=null;this.src='https://picsum.photos/900/700?random=4'"
+        alt="Accessories">
+      <span>Accessories</span>
+    </a>
+  </div>
+</section>
+
+<section class="content" id="new">
+  <div class="eyebrow">Just landed</div>
+  <h2 class="section-title">New, and worth knowing</h2>
+
+  <div class="products">
+
+    <article class="product-card">
+      <div class="product-image">
+        <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=700&q=80"
+          onerror="this.onerror=null;this.src='https://picsum.photos/700/900?random=5'"
+          alt="Everyday outfit">
+        <button class="add-btn" onclick="addToCart('Everyday Set')">ADD TO BAG +</button>
+      </div>
+      <div class="product-info">
+        <h3>The Everyday Set</h3>
+        <p>Soft cotton · Sand</p>
+        <div class="price">₹2,490</div>
+      </div>
+    </article>
+
+    <article class="product-card">
+      <div class="product-image">
+        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=700&q=80"
+          onerror="this.onerror=null;this.src='https://picsum.photos/700/900?random=6'"
+          alt="Sneakers">
+        <button class="add-btn" onclick="addToCart('Form Sneakers')">ADD TO BAG +</button>
+      </div>
+      <div class="product-info">
+        <h3>Form Low Sneakers</h3>
+        <p>Everyday comfort · Ivory</p>
+        <div class="price">₹3,200</div>
+      </div>
+    </article>
+
+    <article class="product-card">
+      <div class="product-image">
+        <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=700&q=80"
+          onerror="this.onerror=null;this.src='https://picsum.photos/700/900?random=7'"
+          alt="Handbag">
+        <button class="add-btn" onclick="addToCart('Daily Carryall')">ADD TO BAG +</button>
+      </div>
+      <div class="product-info">
+        <h3>The Daily Carryall</h3>
+        <p>Textured finish · Cocoa</p>
+        <div class="price">₹2,850</div>
+      </div>
+    </article>
+
+    <article class="product-card">
+      <div class="product-image">
+        <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=700&q=80"
+          onerror="this.onerror=null;this.src='https://picsum.photos/700/900?random=8'"
+          alt="Watch">
+        <button class="add-btn" onclick="addToCart('Studio Timepiece')">ADD TO BAG +</button>
+      </div>
+      <div class="product-info">
+        <h3>Studio Timepiece</h3>
+        <p>Classic finish · Silver</p>
+        <div class="price">₹4,100</div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<section class="content" id="story">
+  <div class="story">
+    <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1100&q=85"
+      onerror="this.onerror=null;this.src='https://picsum.photos/1100/700?random=9'"
+      alt="Retail store">
+
+    <div class="story-content">
+      <div class="eyebrow">A slower kind of shopping</div>
+      <h2>Less, but better. Always.</h2>
+      <p>
+        We believe the best things earn their place.
+        FORMA brings together useful, beautiful pieces
+        made to be reached for often and kept for longer.
+      </p>
+      <a href="#collections" class="btn">Discover More ↗</a>
+    </div>
+  </div>
+</section>
+
+<section class="newsletter">
+  <div class="eyebrow">A note from us</div>
+  <h2>Good things, occasionally.</h2>
+  <p>New collections and a little inspiration. No noise.</p>
+
+  <form onsubmit="subscribe(event)">
+    <input type="email" placeholder="Your email address" required>
+    <button type="submit">SUBSCRIBE ↗</button>
+  </form>
+</section>
+
+</main>
+
+<footer>
+  <div class="logo">FORMA</div>
+  <p>Thoughtful design for everyday living.</p>
+  <p>© 2026 FORMA STUDIO. DEMO STOREFRONT.</p>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+let cartCount = 0;
+
+function notify(message) {
+  const toast = document.getElementById('toast');
+  toast.textContent = message;
+  toast.style.display = 'block';
+
+  clearTimeout(window.toastTimer);
+  window.toastTimer = setTimeout(() => {
+    toast.style.display = 'none';
+  }, 2200);
+}
+
+function addToCart(product) {
+  cartCount++;
+  document.getElementById('cartCount').textContent = cartCount;
+  notify(product + ' added to your bag!');
+}
+
+function showCart() {
+  notify(
+    cartCount
+      ? 'Your bag has ' + cartCount + ' item(s).'
+      : 'Your bag is currently empty.'
+  );
+}
+
+function subscribe(event) {
+  event.preventDefault();
+  notify('Thanks for subscribing!');
+  event.target.reset();
+}
+</script>
+
+</body>
+</html>
